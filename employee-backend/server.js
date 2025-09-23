@@ -11,10 +11,10 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Routes
 const employeeRoutes = require("./Routes/employees");
-// const userRoutes = require("./Routes/user");
+const userRoutes = require("./Routes/user");
 
 app.use("/employees", employeeRoutes);
-// app.use("/user", userRoutes);
+app.use("/user", userRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;

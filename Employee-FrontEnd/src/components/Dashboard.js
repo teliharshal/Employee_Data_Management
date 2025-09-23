@@ -20,14 +20,13 @@ const Dashboard = () => {
           onClick={() => navigate("/dashboard")}
           className = "curser-pointer hover:underline"
           >Employees</li>
-          {isAdmin && (
+          
      <li
        onClick={() => navigate("/analytics")}
        className="cursor-pointer hover:underline"
      >
         Analytics
   </li>
-)}
 {isAdmin && (
           <button
             onClick={() => navigate("/employees/add")}

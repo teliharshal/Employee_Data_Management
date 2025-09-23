@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");   // ✅ use bcrypt not bcryptjs
 const jwt = require("jsonwebtoken");
 
 const db = mysql.createPool({
@@ -15,12 +15,16 @@ const db = mysql.createPool({
 // Register
 router.post("/register", async (req, res) => {
   const { name, email, password, role } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
-  db.query(sql, [name, email, hashedPassword, role || "user"], (err, result) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ message: "User registered successfully" });
-  });
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+    db.query(sql, [name, email, hashedPassword, role || "user"], (err, result) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ message: "User registered successfully" });
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Error registering user" });
+  }
 });
 
 // Login
@@ -32,11 +36,21 @@ router.post("/login", (req, res) => {
     if (results.length === 0) return res.status(400).json({ error: "User not found" });
 
     const user = results[0];
+
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ error: "Invalid password" });
 
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET || "secret", { expiresIn: "1h" });
-    res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET || "secret",
+      { expiresIn: "1h" }
+    );
+
+    res.json({
+      message: "Login successful",
+      token,
+      user: { id: user.id, name: user.name, email: user.email, role: user.role }
+    });
   });
 });
 

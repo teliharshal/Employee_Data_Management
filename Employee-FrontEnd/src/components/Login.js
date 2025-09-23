@@ -1,26 +1,40 @@
 // src/pages/Login.js
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // default role
+  const [role, setRole] = useState("user");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-  e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  if (role === "admin" && email === "admin@example.com" && password === "admin123") {
-    localStorage.setItem("role", "admin");
-    navigate("/dashboard"); // same route
-  } else if (role === "user" && email === "user@example.com" && password === "user123") {
-    localStorage.setItem("role", "user");
-    navigate("/dashboard"); // same route
-  } else {
-    alert("Invalid credentials or role");
-  }
+    // Keep admin login hardcoded
+    if (role === "admin" && email === "admin@example.com" && password === "admin123") {
+      localStorage.setItem("role", "admin");
+      navigate("/dashboard");
+      return;
+    }
 
+    try {
+      // Call backend API for normal users
+      const res = await axios.post("http://localhost:5000/user/login", {
+        email,
+        password,
+      });
+
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role", res.data.user.role);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      alert(err.response?.data?.error || "Login failed");
+    }
   };
 
   return (
@@ -59,6 +73,17 @@ const Login = () => {
             Login
           </button>
         </form>
+
+        {/* 👇 If user is not registered */}
+        <p className="text-sm text-center mt-4">
+          Not registered?{" "}
+          <Link
+            to="/signup"
+            className="text-indigo-600 hover:underline"
+          >
+            Go to Signup
+          </Link>
+        </p>
       </div>
     </div>
   );

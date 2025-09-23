@@ -6,6 +6,7 @@ import EditEmployee from "./components/EditEmployee";
 import AddEmployee from "./components/AddEmployee";
 import EmployeeProfile from "./components/EmployeeProfile";
 import AnalyticsDashboard from "./components/AnalyticsDashboard";
+import SignUp from "./components/SignUp";
 
 function App() {
     const role = localStorage.getItem("role");
@@ -24,6 +25,7 @@ function App() {
         <Route path="/employees/add" element={<AddEmployee/>}/>
         <Route path="/employees/:id" element={<EmployeeProfile/>}/>
         <Route path="/analytics" element={<AnalyticsDashboard/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
     </Router>
   );
