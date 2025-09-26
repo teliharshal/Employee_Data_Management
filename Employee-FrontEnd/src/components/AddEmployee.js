@@ -34,7 +34,7 @@ const AddEmployee = () => {
     if (employee.photo) formData.append("photo", employee.photo);
 
     try {
-      await axios.post("http://localhost:5000/employees", formData, {
+      await axios.post("http://localhost:8080/api/employees", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       navigate("/dashboard"); // go back to dashboard/employee list

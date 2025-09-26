@@ -15,7 +15,7 @@ const EmployeeList = ({ isAdmin }) => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/employees");
+      const res = await axios.get(`http://localhost:8080/api/employees`);
       setEmployees(res.data);
     } catch (err) {
       console.error("Error fetching employees:", err);
@@ -24,7 +24,7 @@ const EmployeeList = ({ isAdmin }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/employees/${id}`);
+      await axios.delete(`http://localhost:8080/api/employees/${id}`);
       setEmployees(employees.filter((emp) => emp.id !== id));
     } catch (err) {
       console.error("Error deleting employee:", err);

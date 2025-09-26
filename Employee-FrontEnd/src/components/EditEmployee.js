@@ -16,7 +16,7 @@ const EditEmployee = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/employees/${id}`)
+      .get(`http://localhost:8080/api/employees/${id}`)
       .then((res) => setEmployee(res.data))
       .catch((err) => console.log(err));
   }, [id]);
@@ -32,21 +32,27 @@ const EditEmployee = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("name", employee.name);
     formData.append("email", employee.email);
     formData.append("position", employee.position);
     formData.append("salary", employee.salary);
     formData.append("department", employee.department);
-    if (employee.photo instanceof File) formData.append("photo", employee.photo);
+    if (employee.photo instanceof File) {
+      formData.append("photo", employee.photo);
+    }
 
     try {
-      await axios.put(`http://localhost:5000/employees/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const res = await axios.put(
+        `http://localhost:8080/api/employees/${id}`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      console.log("Updated:", res.data);
       navigate("/dashboard");
-    } catch (error) {
-      console.log("Update Error:", error);
+    } catch (err) {
+      console.error("Update Error:", err);
     }
   };
 

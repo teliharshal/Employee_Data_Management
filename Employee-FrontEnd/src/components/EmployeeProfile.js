@@ -12,14 +12,14 @@ const EmployeeProfile = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/employees/${id}`)
+      .get(`http://localhost:8080/api/employees/${id}`)
       .then((res) => setEmployee(res.data))
       .catch((err) => console.log(err));
   }, [id]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/employees/${id}`);
+      await axios.delete(`http://localhost:8080/api/employees/${id}`);
       navigate("/dashboard"); // Redirect to Employee List after deletion
     } catch (error) {
       console.log("Delete Error:", error);
@@ -44,7 +44,7 @@ const EmployeeProfile = () => {
           <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-indigo-500">
             {employee.photo ? (
               <img
-                src={`http://localhost:5000/uploads/${employee.photo}`}
+                src={`http://localhost:8080/uploads/${employee.photo}`}
                 alt={employee.name}
                 className="w-full h-full object-cover"
               />

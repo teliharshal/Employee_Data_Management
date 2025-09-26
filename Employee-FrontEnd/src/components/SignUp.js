@@ -15,14 +15,14 @@ const SignUp = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/register", {
+      await axios.post("http://localhost:8080/api/auth/register", {
         name,
         email,
         password,
         role: "user",
       });
       alert("Registration successful! Please login now.");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       alert(err.response?.data?.error || "Registration failed");
     }

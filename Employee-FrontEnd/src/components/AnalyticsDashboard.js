@@ -12,7 +12,7 @@ const AnalyticsDashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/employees")
+      .get("http://localhost:8080/api/employees")
       .then((res) => setEmployees(res.data))
       .catch((err) => console.error("Error fetching employees:", err));
   }, []);

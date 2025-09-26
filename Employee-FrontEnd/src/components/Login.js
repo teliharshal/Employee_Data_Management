@@ -21,7 +21,7 @@ const Login = () => {
 
     try {
       // Call backend API for normal users
-      const res = await axios.post("http://localhost:5000/user/login", {
+      const res = await axios.post("http://localhost:8080/api/auth/login", {
         email,
         password,
       });
@@ -44,20 +44,26 @@ const Login = () => {
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="email"
+            name="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
+            autoComplete="email"
             className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
           />
+
           <input
             type="password"
+            name="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
+            autocomplete="current-password"
             className="px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
           />
+
           <select
             value={role}
             onChange={(e) => setRole(e.target.value)}
@@ -66,6 +72,7 @@ const Login = () => {
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
+
           <button
             type="submit"
             className="bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition"
@@ -77,10 +84,7 @@ const Login = () => {
         {/* 👇 If user is not registered */}
         <p className="text-sm text-center mt-4">
           Not registered?{" "}
-          <Link
-            to="/signup"
-            className="text-indigo-600 hover:underline"
-          >
+          <Link to="/signup" className="text-indigo-600 hover:underline">
             Go to Signup
           </Link>
         </p>
