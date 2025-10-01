@@ -50,7 +50,7 @@ const EditEmployee = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Updated:", res.data);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       console.error("Update Error:", err);
     }
@@ -104,13 +104,13 @@ const EditEmployee = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-        <input
+        {/* <input
           type="file"
           name="photo"
           accept="image/*"
           onChange={handleChange}
           className="w-full p-2 border rounded"
-        />
+        /> */}
         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
           Update Employee
         </button>

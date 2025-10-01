@@ -3,8 +3,8 @@ import EmployeeList from "../components/EmployeeList";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-  const role = localStorage.getItem("role"); // read stored role
-  const isAdmin = role === "admin";
+  // const role = localStorage.getItem("role"); // read stored role
+  // const isAdmin = role === "admin";
   const navigate = useNavigate();
 
   return (
@@ -12,12 +12,12 @@ const Dashboard = () => {
       {/* Sidebar */}
       <div className="w-64 bg-gray-800 text-white p-6">
         <h2 className="text-2xl font-bold mb-6">
-          {isAdmin ? "Admin Dashboard" : "User Dashboard"}
+          Employee Management
         </h2>
         <ul className="space-y-2">
           {/* <li>Home</li> */}
           <li
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/")}
           className = "curser-pointer hover:underline"
           >Employees</li>
           
@@ -27,20 +27,19 @@ const Dashboard = () => {
      >
         Analytics
   </li>
-{isAdmin && (
+{/* {isAdmin && ( */}
           <button
             onClick={() => navigate("/employees/add")}
             className=" text-white cursor-pointer hover:underline"
           >
           Add Employee
           </button>
-        )}
         </ul>
       </div>
 
       {/* Main content */}
       <div className="flex-1 p-6">
-        <EmployeeList isAdmin={isAdmin} />
+        <EmployeeList/>
       </div>
     </div>
   );

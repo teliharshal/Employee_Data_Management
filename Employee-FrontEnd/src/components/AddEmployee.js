@@ -10,7 +10,6 @@ const AddEmployee = () => {
     position: "",
     salary: "",
     department: "",
-    photo: null,
   });
 
   const handleChange = (e) => {
@@ -31,13 +30,13 @@ const AddEmployee = () => {
     formData.append("position", employee.position);
     formData.append("salary", employee.salary);
     formData.append("department", employee.department);
-    if (employee.photo) formData.append("photo", employee.photo);
+    // if (employee.photo) formData.append("photo", employee.photo);
 
     try {
       await axios.post("http://localhost:8080/api/employees", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      navigate("/dashboard"); // go back to dashboard/employee list
+      navigate("/"); // go back to dashboard/employee list
     } catch (error) {
       console.error("Error adding employee:", error);
     }
@@ -91,13 +90,13 @@ const AddEmployee = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-        <input
+        {/* <input
           type="file"
           name="photo"
           accept="image/*"
           onChange={handleChange}
           className="w-full p-2 border rounded"
-        />
+        /> */}
         <button
           type="submit"
           className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700"

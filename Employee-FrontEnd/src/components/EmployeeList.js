@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const EmployeeList = ({ isAdmin }) => {
+const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,14 +62,12 @@ const EmployeeList = ({ isAdmin }) => {
           className="px-4 py-2 border rounded w-full md:w-1/3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
-        {isAdmin && (
           <button
             onClick={() => navigate("/employees/add")}
             className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
           >
             + Add Employee
           </button>
-        )}
       </div>
 
       {/* Employee Table */}
@@ -82,28 +80,27 @@ const EmployeeList = ({ isAdmin }) => {
               <th className="border px-4 py-2 text-left">Position</th>
               <th className="border px-4 py-2 text-right">Salary</th>
               <th className="border px-4 py-2 text-left">Department</th>
-              {isAdmin && <th className="border px-4 py-2 text-center">Actions</th>}
+              <th className="border px-4 py-2 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
             {currentEmployees.length === 0 ? (
               <tr>
-                <td colSpan={isAdmin ? 6 : 5} className="text-center py-4 text-gray-500">
+                <td className="text-center py-4 text-gray-500">
                   No employees found.
                 </td>
               </tr>
             ) : (
               currentEmployees.map((emp) => (
                 <tr key={emp.id} className="hover:bg-gray-50 transition">
-                  <td className="border px-4 py-2 text-blue-600 cursor-pointer hover:underline"
-    onClick={() => navigate(`/employees/${emp.id}`)}>
+                  <td className="border px-4 py-2 text-blue-600 cursor-pointer hover:underline">
   {emp.name}
 </td>
                   <td className="border px-4 py-2">{emp.email}</td>
                   <td className="border px-4 py-2">{emp.position}</td>
                   <td className="border px-4 py-2 text-right">${emp.salary}</td>
                   <td className="border px-4 py-2">{emp.department}</td>
-                  {isAdmin && (
+                 
                     <td className="border px-4 py-2 text-center space-x-2">
                       <button
                         onClick={() => navigate(`/employees/${emp.id}/edit`)}
@@ -118,7 +115,6 @@ const EmployeeList = ({ isAdmin }) => {
                         Delete
                       </button>
                     </td>
-                  )}
                 </tr>
               ))
             )}
