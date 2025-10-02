@@ -67,24 +67,80 @@ React Router DOM
 
 TailwindCSS
 
-🗂️ Project Structure
-employee-data-management/
-├── employeeBackend/        # Spring Boot backend
-│   ├── src/main/java/...   # Java source code
-│   ├── src/test/java/...   # Unit & integration tests
-│   └── pom.xml             # Maven dependencies
-├── employee-FrontEnd/      # React frontend
-│   ├── src/                # React components, pages, utils
-│   └── package.json
-└── README.md
+# 📸 Screenshots
 
-⚙️ Project Setup
-🔹 Backend (Spring Boot)
-Navigate to the backend folder:
-cd employeeBackend
+🏠 Home Page
+![Home Page](Screenshots/HomePage.png)
+
+🔑 Login Page
+![Login Page](Screenshots/LoginPage.png)
+
+📝 Sign Up Page
+![Sign Up](Screenshots/SignupPage.png)
+
+➕ Add Employee
+![ADD Employee](Screenshots/ADDEmployee.png)
+
+👥 Employee List
+![EmployeeList](Screenshots/EmployeeList.png)
+
+✏️ Edit Employee
+![EditEmployee](Screenshots/EditEmployee.png)
+
+📊 Analytics Dashboard
+![Analytical Dashboard](Screenshots/AnlyticalDashboard.png)
+
+# 🗂️ Project Structure
+.idea
+.vscode
+Employee-FrontEnd/
+├─ node_modules/
+├─ public/
+├─ src/
+│  ├─ components/
+│  │  ├─ AddEmployee.js
+│  │  ├─ AnalyticsDashboard.js
+│  │  ├─ Dashboard.js
+│  │  ├─ EditEmployee.js
+│  │  ├─ EmployeeList.js
+│  │  ├─ EmployeeProfile.js
+│  │  ├─ Home.js
+│  │  ├─ Login.js
+│  │  └─ SignUp.js
+│  ├─ App.js
+│  ├─ App.css
+│  ├─ index.js
+│  └─ index.css
+├─ package.json
+├─ package-lock.json
+├─ tailwind.config.js
+└─ README.md
+employeeBackend/
+├─ .idea
+├─ .mvn
+├─ src/
+│  ├─ main/
+│  │  ├─ java/
+│  │  │  └─ e/e/e/employeeBackend/
+│  │  │     ├─ Controller/
+│  │  │     ├─ Dto/
+│  │  │     ├─ entity/
+│  │  │     ├─ repository/
+│  │  │     ├─ service/
+│  │  │     └─ EmployeeBackendApplication.java
+│  └─ resources/
+├─ target/
+├─ uploads/
+├─ .gitignore
+├─ .gitattributes
+├─ HELP.md
+├─ mvnw
+├─ mvnw.cmd
+└─ pom.xml
+Screenshots
+README.md
 
 # Update application.properties with your MySQL credentials:
-
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
 spring.datasource.username=root
 spring.datasource.password=root
@@ -97,19 +153,14 @@ mvn spring-boot:run
 👉 http://localhost:8080/api/employees
 
 🔹 Frontend (React)
-
-Navigate to the frontend folder:
-
+# Navigate to the frontend folder:
 cd employee-FrontEnd
-
 
 # Install dependencies:
 npm install
 
-
 # Run the React app:
 npm start
-
 
 # Frontend will be available at:
 👉 http://localhost:3000
