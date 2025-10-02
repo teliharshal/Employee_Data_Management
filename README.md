@@ -80,9 +80,7 @@ employee-data-management/
 
 ⚙️ Project Setup
 🔹 Backend (Spring Boot)
-
 Navigate to the backend folder:
-
 cd employeeBackend
 
 # Update application.properties with your MySQL credentials:
@@ -95,7 +93,7 @@ spring.jpa.hibernate.ddl-auto=update
 # Run the backend:
 mvn spring-boot:run
 
-#API will be available at:
+# API will be available at:
 👉 http://localhost:8080/api/employees
 
 🔹 Frontend (React)
@@ -105,13 +103,11 @@ Navigate to the frontend folder:
 cd employee-FrontEnd
 
 
-Install dependencies:
-
+# Install dependencies:
 npm install
 
 
-Run the React app:
-
+# Run the React app:
 npm start
 
 
@@ -120,14 +116,12 @@ npm start
 
 # ✅ Testing
 
-Run backend tests:
-
+# Run backend tests:
 mvn test
-
 
 Tests cover:
 
-Employee CRUD operations
+# Employee CRUD operations
 
 Authentication (Register/Login)
 
