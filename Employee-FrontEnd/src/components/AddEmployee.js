@@ -14,11 +14,11 @@ const AddEmployee = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === "photo") {
-      setEmployee({ ...employee, photo: files[0] });
-    } else {
-      setEmployee({ ...employee, [name]: value });
-    }
+    // if (name === "photo") {
+    //   setEmployee({ ...employee, photo: files[0] });
+    // } else {
+    //   setEmployee({ ...employee, [name]: value });
+    // }
   };
 
   const handleSubmit = async (e) => {
@@ -36,7 +36,7 @@ const AddEmployee = () => {
       await axios.post("http://localhost:8080/api/employees", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      navigate("/"); // go back to dashboard/employee list
+      navigate("/dashboard"); // go back to dashboard/employee list
     } catch (error) {
       console.error("Error adding employee:", error);
     }

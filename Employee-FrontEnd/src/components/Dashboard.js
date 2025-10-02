@@ -17,7 +17,7 @@ const Dashboard = () => {
         <ul className="space-y-2">
           {/* <li>Home</li> */}
           <li
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/dashboard")}
           className = "curser-pointer hover:underline"
           >Employees</li>
           

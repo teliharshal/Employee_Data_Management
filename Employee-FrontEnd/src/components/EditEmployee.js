@@ -50,7 +50,7 @@ const EditEmployee = () => {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
       console.log("Updated:", res.data);
-      navigate("/");
+      navigate("/dashboard");
     } catch (err) {
       console.error("Update Error:", err);
     }
