@@ -91,54 +91,53 @@ TailwindCSS
 ![Analytical Dashboard](Screenshots/AnlyticalDashboard.png)
 
 # 🗂️ Project Structure
-.idea
-.vscode
-Employee-FrontEnd/
-├─ node_modules/
-├─ public/
-├─ src/
-│  ├─ components/
-│  │  ├─ AddEmployee.js
-│  │  ├─ AnalyticsDashboard.js
-│  │  ├─ Dashboard.js
-│  │  ├─ EditEmployee.js
-│  │  ├─ EmployeeList.js
-│  │  ├─ EmployeeProfile.js
-│  │  ├─ Home.js
-│  │  ├─ Login.js
-│  │  └─ SignUp.js
-│  ├─ App.js
-│  ├─ App.css
-│  ├─ index.js
-│  └─ index.css
-├─ package.json
-├─ package-lock.json
-├─ tailwind.config.js
-└─ README.md
-employeeBackend/
-├─ .idea
-├─ .mvn
-├─ src/
-│  ├─ main/
-│  │  ├─ java/
-│  │  │  └─ e/e/e/employeeBackend/
-│  │  │     ├─ Controller/
-│  │  │     ├─ Dto/
-│  │  │     ├─ entity/
-│  │  │     ├─ repository/
-│  │  │     ├─ service/
-│  │  │     └─ EmployeeBackendApplication.java
-│  └─ resources/
-├─ target/
-├─ uploads/
-├─ .gitignore
-├─ .gitattributes
-├─ HELP.md
-├─ mvnw
-├─ mvnw.cmd
-└─ pom.xml
-Screenshots
-README.md
+📦 Employee-FrontEnd  
+ ┣ 📂 public  
+ ┣ 📂 src  
+ ┃ ┣ 📂 components  
+ ┃ ┃ ┣ 📄 AddEmployee.js  
+ ┃ ┃ ┣ 📄 AnalyticsDashboard.js  
+ ┃ ┃ ┣ 📄 Dashboard.js  
+ ┃ ┃ ┣ 📄 EditEmployee.js  
+ ┃ ┃ ┣ 📄 EmployeeList.js  
+ ┃ ┃ ┣ 📄 EmployeeProfile.js  
+ ┃ ┃ ┣ 📄 Home.js  
+ ┃ ┃ ┣ 📄 Login.js  
+ ┃ ┃ ┗ 📄 SignUp.js  
+ ┃ ┣ 📄 App.js  
+ ┃ ┣ 📄 index.js  
+ ┃ ┗ 📂 styles  
+ ┃   ┗ 📄 App.css  
+ ┣ 📄 package.json  
+ ┣ 📄 tailwind.config.js  
+ ┗ 📄 README.md  
+
+📦 employeeBackend  
+ ┣ 📂 src  
+ ┃ ┗ 📂 main  
+ ┃   ┣ 📂 java/e/e/e/employeeBackend  
+ ┃   ┃ ┣ 📂 Controller  
+ ┃   ┃ ┣ 📂 Dto  
+ ┃   ┃ ┣ 📂 Entity  
+ ┃   ┃ ┣ 📂 Repository  
+ ┃   ┃ ┣ 📂 Service  
+ ┃   ┃ ┗ 📄 EmployeeBackendApplication.java  
+ ┃   ┗ 📂 resources  
+ ┣ 📂 uploads  
+ ┣ 📄 pom.xml  
+ 
+
+📂 Screenshots  
+ ┣ 🖼️ ADDEmployee.png   
+ ┣ 🖼️ AnalyticsDashboard.png 
+ ┣ 🖼️ EditEmployee.png  
+ ┣ 🖼️ EmployeeList.png  
+ ┣ 🖼️ HomePage.png
+ ┣ 🖼️ LoginPage.png
+ ┗ 🖼️ SignupPage.png 
+ 📄 README.md  
+
+
 
 # Update application.properties with your MySQL credentials:
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
