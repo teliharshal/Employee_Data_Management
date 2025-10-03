@@ -22,7 +22,7 @@ Users can create, read, update, and delete employee records via a clean and resp
 
 User authentication (Register/Login)
 
-Spring Boot + Spring Data JPA + MySQL
+Spring Boot + Spring Data JPA + H2
 
 H2 database for testing
 
@@ -51,7 +51,7 @@ Spring Boot 3.5.6
 
 Spring Data JPA
 
-MySQL (application database)
+H2 (application database)
 
 H2 (test database)
 
@@ -137,11 +137,21 @@ TailwindCSS
  📄 README.md  
 
 
-# Update application.properties with your MySQL credentials:
-spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
-spring.datasource.username=root
-spring.datasource.password=root
+# Update application.properties with your H2 credentials:
+spring.datasource.url=jdbc:h2:mem:employee_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+
 spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
 
 # Run the backend:
 mvn spring-boot:run
