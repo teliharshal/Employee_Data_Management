@@ -11,7 +11,6 @@ const EditEmployee = () => {
     position: "",
     salary: "",
     department: "",
-    photo: null,
   });
 
   useEffect(() => {
@@ -22,32 +21,18 @@ const EditEmployee = () => {
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "photo") {
-      setEmployee({ ...employee, photo: files[0] });
-    } else {
-      setEmployee({ ...employee, [name]: value });
-    }
+    const { name, value } = e.target;
+    setEmployee({ ...employee, [name]: value });
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", employee.name);
-    formData.append("email", employee.email);
-    formData.append("position", employee.position);
-    formData.append("salary", employee.salary);
-    formData.append("department", employee.department);
-    if (employee.photo instanceof File) {
-      formData.append("photo", employee.photo);
-    }
-
     try {
       const res = await axios.put(
         `http://localhost:8080/api/employees/${id}`,
-        formData,
-        { headers: { "Content-Type": "multipart/form-data" } }
+        employee, // send as JSON
+        { headers: { "Content-Type": "application/json" } }
       );
       console.log("Updated:", res.data);
       navigate("/dashboard");
@@ -104,13 +89,6 @@ const EditEmployee = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-        {/* <input
-          type="file"
-          name="photo"
-          accept="image/*"
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        /> */}
         <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">
           Update Employee
         </button>
