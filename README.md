@@ -40,7 +40,7 @@ Form validations for Login, Signup, Add Employee, and Update Employee forms (che
 
 Search/filter employees by name
 
-#Edit and delete employees via modal or inline form
+Edit and delete employees via modal or inline form
 
 🏗️ Tech Stack
 # Backend
@@ -126,7 +126,6 @@ TailwindCSS
  ┣ 📂 uploads  
  ┣ 📄 pom.xml  
  
-
 📂 Screenshots  
  ┣ 🖼️ ADDEmployee.png   
  ┣ 🖼️ AnalyticsDashboard.png 
@@ -136,7 +135,6 @@ TailwindCSS
  ┣ 🖼️ LoginPage.png
  ┗ 🖼️ SignupPage.png 
  📄 README.md  
-
 
 
 # Update application.properties with your MySQL credentials:
