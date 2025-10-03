@@ -13,30 +13,18 @@ const AddEmployee = () => {
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    // if (name === "photo") {
-    //   setEmployee({ ...employee, photo: files[0] });
-    // } else {
-    //   setEmployee({ ...employee, [name]: value });
-    // }
+    const { name, value } = e.target;
+    setEmployee({ ...employee, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("name", employee.name);
-    formData.append("email", employee.email);
-    formData.append("position", employee.position);
-    formData.append("salary", employee.salary);
-    formData.append("department", employee.department);
-    // if (employee.photo) formData.append("photo", employee.photo);
-
     try {
-      await axios.post("http://localhost:8080/api/employees", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+      await axios.post("http://localhost:8080/api/employees", employee, {
+        headers: { "Content-Type": "application/json" },
       });
-      navigate("/dashboard"); // go back to dashboard/employee list
+      navigate("/dashboard"); 
     } catch (error) {
       console.error("Error adding employee:", error);
     }
@@ -90,13 +78,6 @@ const AddEmployee = () => {
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-        {/* <input
-          type="file"
-          name="photo"
-          accept="image/*"
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-        /> */}
         <button
           type="submit"
           className="w-full bg-green-600 text-white p-2 rounded hover:bg-green-700"

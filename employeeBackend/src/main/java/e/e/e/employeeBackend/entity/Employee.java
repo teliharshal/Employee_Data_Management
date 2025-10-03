@@ -38,10 +38,6 @@ public class Employee {
         this.department = department;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
     private String name;
 
     @Column(unique = true)
@@ -74,23 +70,18 @@ public class Employee {
         return salary;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
 
-    private String photo;
 
     public Employee() {} // no-args constructor (required by JPA)
 
     // ✅ all-args constructor
-    public Employee(Long id, String name, String email, String position, Double salary, String department, String photo) {
+    public Employee(Long id, String name, String email, String position, Double salary, String department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.position = position;
         this.salary = salary;
         this.department = department;
-        this.photo = photo;
     }
 
 }

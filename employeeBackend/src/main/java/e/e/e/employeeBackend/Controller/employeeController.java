@@ -1,17 +1,11 @@
 package e.e.e.employeeBackend.Controller;
 
 import e.e.e.employeeBackend.entity.Employee;
+import e.e.e.employeeBackend.service.employeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import e.e.e.employeeBackend.service.employeeService;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -19,13 +13,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class employeeController {
 
-    @Autowired
     private final employeeService employeeservice;
-//    private final Path uploadDir = Paths.get("uploads");
 
-
-    public employeeController(employeeService employeeservice){
-        this.employeeservice=employeeservice;
+    @Autowired
+    public employeeController(employeeService employeeservice) {
+        this.employeeservice = employeeservice;
     }
 
     // GET all employees
@@ -34,7 +26,7 @@ public class employeeController {
         return employeeservice.getAllEmployees();
     }
 
-    // GET single employee
+    // GET single employee by id
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployee(@PathVariable Long id) {
         return employeeservice.getEmployeeById(id)
@@ -42,72 +34,27 @@ public class employeeController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    private final Path uploadDir = Paths.get("uploads");
-
+    // POST add new employee (JSON body)
     @PostMapping
-    public ResponseEntity<Employee> addEmployee(
-            @RequestParam String name,
-            @RequestParam String email,
-            @RequestParam String position,
-            @RequestParam Double salary,
-            @RequestParam String department,
-            @RequestParam(required = false) MultipartFile photo
-    ) throws IOException {
-
-        String photoName = null;
-
-        if (photo != null && !photo.isEmpty()) {
-            if (!Files.exists(uploadDir)) {
-                Files.createDirectories(uploadDir);
-            }
-            photoName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
-            Path filePath = uploadDir.resolve(photoName);
-            photo.transferTo(filePath.toFile());
-        }
-
-        Employee employee = new Employee(null, name, email, position, salary, department, photoName);
-        return ResponseEntity.ok(employeeservice.saveEmployee(employee));
+    public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee) {
+        Employee savedEmployee = employeeservice.saveEmployee(employee);
+        return ResponseEntity.ok(savedEmployee);
     }
 
-    // PUT update employee
+    // PUT update employee (JSON body)
     @PutMapping("/{id}")
-    public ResponseEntity<Employee> updateEmployee(
-            @PathVariable Long id,
-            @RequestParam String name,
-            @RequestParam String email,
-            @RequestParam String position,
-            @RequestParam Double salary,
-            @RequestParam String department,
-            @RequestParam(required = false) MultipartFile photo
-    ) throws IOException {
-
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee updatedEmployee) {
         return employeeservice.getEmployeeById(id).map(existing -> {
-            existing.setName(name);
-            existing.setEmail(email);
-            existing.setPosition(position);
-            existing.setSalary(salary);
-            existing.setDepartment(department);
+            existing.setName(updatedEmployee.getName());
+            existing.setEmail(updatedEmployee.getEmail());
+            existing.setPosition(updatedEmployee.getPosition());
+            existing.setSalary(updatedEmployee.getSalary());
+            existing.setDepartment(updatedEmployee.getDepartment());
 
-            if (photo != null && !photo.isEmpty()) {
-                try {
-                    if (!Files.exists(uploadDir)) {
-                        Files.createDirectories(uploadDir);
-                    }
-
-                    String photoName = System.currentTimeMillis() + "_" + photo.getOriginalFilename();
-                    Path filePath = uploadDir.resolve(photoName);
-                    photo.transferTo(filePath.toFile());
-
-                    existing.setPhoto(photoName);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            return ResponseEntity.ok(employeeservice.saveEmployee(existing));
+            Employee savedEmployee = employeeservice.saveEmployee(existing);
+            return ResponseEntity.ok(savedEmployee);
         }).orElse(ResponseEntity.notFound().build());
     }
-
 
     // DELETE employee
     @DeleteMapping("/{id}")
@@ -119,5 +66,3 @@ public class employeeController {
         return ResponseEntity.notFound().build();
     }
 }
-
-

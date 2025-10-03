@@ -31,8 +31,8 @@ class EmployeeServiceTest {
 
     @Test
     void testGetAllEmployees() {
-        Employee emp1 = new Employee(1L, "Harshal", "harshal@example.com", "Developer", 50000.0, "IT", null);
-        Employee emp2 = new Employee(2L, "Vishal", "vishal@example.com", "Manager", 70000.0, "HR", null);
+        Employee emp1 = new Employee(1L, "Harshal", "harshal@example.com", "Developer", 50000.0, "IT");
+        Employee emp2 = new Employee(2L, "Vishal", "vishal@example.com", "Manager", 70000.0, "HR");
 
         when(employeeRepository.findAll()).thenReturn(Arrays.asList(emp1, emp2));
 
@@ -45,7 +45,7 @@ class EmployeeServiceTest {
 
     @Test
     void testSaveEmployee() {
-        Employee emp = new Employee(1L, "Krishna", "krishna@example.com", "Tester", 40000.0, "QA", null);
+        Employee emp = new Employee(1L, "Krishna", "krishna@example.com", "Tester", 40000.0, "QA");
 
         when(employeeRepository.save(emp)).thenReturn(emp);
 
@@ -58,7 +58,7 @@ class EmployeeServiceTest {
 
     @Test
     void testGetEmployeeById() {
-        Employee emp = new Employee(1L, "Ganesh", "ganesh@example.com", "DevOps", 60000.0, "Cloud", null);
+        Employee emp = new Employee(1L, "Ganesh", "ganesh@example.com", "DevOps", 60000.0, "Cloud");
 
         when(employeeRepository.findById(1L)).thenReturn(Optional.of(emp));
 
